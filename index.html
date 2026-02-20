@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palace Of EthioGaza</title>
+<link rel="icon" href="ethiopian-flag-logo.png" type="image/png">
+
+<style>
+/* ===== General Styles ===== */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Arial', sans-serif; }
+body{
+  color:white;
+  overflow-x:hidden;
+  background:#000;
+}
+
+/* ===== Background Video ===== */
+#bg-video{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-1;
+  filter:brightness(0.5) contrast(1.2);
+}
+
+/* ===== Preloader ===== */
+#preloader{
+  position:fixed;
+  top:0; left:0; width:100%; height:100%;
+  background:#000;
+  display:flex; justify-content:center; align-items:center;
+  z-index:9999;
+}
+#loader{
+  border:8px solid #f3f3f3;
+  border-top:8px solid #ff0000;
+  border-radius:50%;
+  width:70px; height:70px;
+  animation:spin 1s linear infinite;
+}
+
+/* ===== Header ===== */
+header{
+  text-align:center;
+  padding:20px 0;
+  font-size:32px;
+  font-weight:bold;
+  text-shadow:0 0 15px red;
+  position:relative;
+}
+header img.flag{
+  position:absolute;
+  left:20px; top:15px;
+  width:50px;
+  animation:wave 2s infinite alternate;
+}
+header img.logo{
+  width:80px; height:80px;
+  border-radius:50%;
+  box-shadow:0 0 30px red;
+  animation:pulse 2s infinite;
+}
+
+/* ===== Animations ===== */
+@keyframes spin{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(360deg);}
+}
+@keyframes wave{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+  100%{transform:translateY(0);}
+}
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+  100%{transform:scale(1);}
+}
+@keyframes fadeInLeft{
+  0%{opacity:0; transform:translateX(-50px);}
+  100%{opacity:1; transform:translateX(0);}
+}
+@keyframes fadeInRight{
+  0%{opacity:0; transform:translateX(50px);}
+  100%{opacity:1; transform:translateX(0);}
+}
+
+/* ===== Navigation ===== */
+nav{text-align:center; margin:20px 0;}
+nav button{
+  padding:12px 25px;
+  margin:10px;
+  border:none;
+  border-radius:8px;
+  background:#ff0000;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.4s;
+  box-shadow:0 0 15px red;
+}
+nav button:hover{
+  background:white;
+  color:red;
+  transform:scale(1.1);
+  box-shadow:0 0 25px red;
+}
+
+/* ===== Sections ===== */
+section{
+  padding:40px 20px;
+  transition:1s;
+}
+#history{
+  background:rgba(17,0,0,0.8);
+  animation:fadeInLeft 1.5s ease-in;
+  border-radius:12px;
+  margin:20px auto;
+  width:90%;
+  box-shadow:0 0 30px red;
+}
+#games{
+  display:none;
+}
+.game{
+  background:rgba(17,0,0,0.8);
+  margin:20px auto;
+  padding:20px;
+  border-radius:12px;
+  width:90%;
+  box-shadow:0 0 25px red;
+  transition:0.6s;
+  opacity:0;
+}
+.game:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 35px #ff0000;
+}
+.download-btn{
+  display:inline-block;
+  margin:10px;
+  padding:12px 25px;
+  background:#ff0000;
+  color:white;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
+  box-shadow:0 0 10px red;
+}
+.download-btn:hover{
+  background:white;
+  color:red;
+  transform:scale(1.1);
+  box-shadow:0 0 15px red;
+}
+
+/* ===== Disclaimer ===== */
+#disclaimer{
+  background:rgba(34,0,0,0.8);
+  padding:20px;
+  margin:30px auto;
+  width:90%;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 0 20px red;
+}
+#disclaimer p{
+  font-size:16px;
+  line-height:1.5;
+  color:#ffaaaa;
+  font-weight:bold;
+}
+
+/* ===== Footer ===== */
+footer{
+  background:rgba(17,0,0,0.8);
+  padding:20px;
+  text-align:center;
+  font-size:16px;
+  letter-spacing:1px;
+  margin-top:40px;
+  text-shadow:0 0 5px red;
+}
+footer a{color:red; text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+
+/* ===== Responsive ===== */
+@media(max-width:768px){
+  .game{width:95%;}
+  nav button{padding:10px 20px; margin:5px; font-size:14px;}
+  header{font-size:28px;}
+  header img.flag{width:40px; top:5px;}
+  header img.logo{width:60px; height:60px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Video -->
+<video id="bg-video" autoplay muted loop>
+  <source src="cinematic-background.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<!-- Preloader -->
+<div id="preloader">
+  <div id="loader"></div>
+</div>
+
+<header>
+  <img src="ethiopian-flag.png" class="flag" alt="Ethiopian Flag">
+  Palace Of EthioGaza
+  <img src="logo.png" class="logo" alt="Website Logo">
+</header>
+
+<nav>
+  <button onclick="showHistory()">History</button>
+  <button onclick="showGames()">Games</button>
+</nav>
+
+<section id="history">
+  <h2>Garena Company History</h2>
+  <p>
+  Garena is a Singapore-based company founded in 2009, part of Sea Ltd. It became globally famous due to Free Fire and other major games.  
+  It publishes online and mobile games worldwide, including League of Legends (SEA), Arena of Valor, and Call of Duty Mobile (Garena edition).  
+  Garena’s vision is to provide top-quality gaming experiences to players all over the world.
+  </p>
+</section>
+
+<section id="games">
+<div class="game" style="animation:fadeInRight 1s forwards;"> 
+<h3>Free Fire</h3>
+<a class="download-btn" href="https://play.google.com/store/apps/details?id=com.dts.freefireth" target="_blank">Download Android</a>
+<a class="download-btn" href="https://apps.apple.com/app/free-fire/id1300146617" target="_blank">Download iOS</a>
+</div>
+
+<div class="game" style="animation:fadeInLeft 1s forwards; animation-delay:0.2s;"> 
+<h3>Arena of Valor</h3>
+<a class="download-btn" href="https://play.google.com/store/apps/details?id=com.ngame.allstar.eu" target="_blank">Download Android</a>
+<a class="download-btn" href="https://apps.apple.com/app/arena-of-valor/id1150318642" target="_blank">Download iOS</a>
+</div>
+
+<div class="game" style="animation:fadeInRight 1s forwards; animation-delay:0.4s;"> 
+<h3>Call of Duty Mobile (Garena)</h3>
+<a class="download-btn" href="https://play.google.com/store/apps/details?id=com.garena.game.codm" target="_blank">Download Android</a>
+<a class="download-btn" href="https://apps.apple.com/app/call-of-duty-mobile-garena/id1508620762" target="_blank">Download iOS</a>
+</div>
+
+<div class="game" style="animation:fadeInLeft 1s forwards; animation-delay:0.6s;"> 
+<h3>League of Legends (PC)</h3>
+<a class="download-btn" href="https://www.leagueoflegends.com" target="_blank">Official Website</a>
+</div>
+</section>
+
+<section id="disclaimer">
+<p>⚠️ This is a fan-made website called "Palace Of EthioGaza". It is NOT the official website of Garena.  
+Garena and all related game titles belong to their respective owners.</p>
+</section>
+
+<footer>
+Created By: King <br>
+Telegram: <a href="https://t.me/hope_1029">@hope_1029</a><br>
+Real Name: Tesfaye Adugna
+</footer>
+
+<script>
+// Preloader
+window.addEventListener("load", function(){
+  document.getElementById("preloader").style.display="none";
+});
+
+// Section Switching
+function showHistory(){
+  document.getElementById("history").style.display="block";
+  document.getElementById("games").style.display="none";
+}
+function showGames(){
+  document.getElementById("history").style.display="none";
+  document.getElementById("games").style.display="block";
+  // Trigger animations for games
+  const games = document.querySelectorAll('.game');
+  games.forEach((g, i) => {
+    g.style.opacity = 1;
+  });
+}
+</script>
+
+</body>
+</html>
